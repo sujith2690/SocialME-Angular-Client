@@ -7,14 +7,15 @@ import { SavedPostsComponent } from './pages/saved-posts/saved-posts.component';
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { userGuard } from 'src/app/Core/Guard/user/user.guard';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', component: HomeComponent,  canActivate: [userGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignUpComponent },
-    { path: 'saved', component: SavedPostsComponent },
-    { path: 'profile', component: ProfileCardComponent },
-    { path: 'chat', component: ChatComponent },
+    { path: 'saved', component: SavedPostsComponent,canActivate: [userGuard] },
+    { path: 'profile', component: ProfileCardComponent,canActivate: [userGuard] },
+    { path: 'chat', component: ChatComponent,canActivate: [userGuard] },
     { path: 'error', component: ErrorComponent },
     { path: '**', redirectTo: "/error" },
 ];
