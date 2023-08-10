@@ -11,7 +11,9 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getTimelinePosts(id: string): Observable<any> {
-    console.log(id,'--id-----------')
     return this.http.get(`${this.baseUrl}post/${id}/timeline`);
+  }
+  likePost(postId: string,userId:string): Observable<any> {
+    return this.http.put(`${this.baseUrl}post/${postId}/like`,{userId})
   }
 }

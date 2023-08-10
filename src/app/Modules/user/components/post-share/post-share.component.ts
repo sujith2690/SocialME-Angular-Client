@@ -45,7 +45,6 @@ export class PostShareComponent {
     const storedContent = localStorage.getItem('User');
     if (storedContent) {
       this.user = JSON.parse(storedContent);
-      console.log(this.user, '------userddd---------')
     } else {
       this.user=[]
     }

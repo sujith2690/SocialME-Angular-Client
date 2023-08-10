@@ -16,8 +16,6 @@ export class InjectJwtService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('Token');
-    console.log(token,'-------token middle');
-    
     const authRequest = request.clone({
       setHeaders: {
         authorization: `Bearer ${token}`,
