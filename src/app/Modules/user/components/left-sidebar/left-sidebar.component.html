@@ -1,0 +1,48 @@
+<div class="leftSidebar">
+    <div class="heading">
+        <h2>SocialME</h2>
+    </div>
+    <form action=""  >
+        <div class="search">
+            <input type="text" class='textbox' placeholder='Search User' ref={desc} />
+            <fa-icon [icon]="search" class='s-icons'></fa-icon>
+        </div>
+    </form>
+        <!-- <div class='searchoutput'>
+            {Result.map((item, i) => {
+                return (
+                    <div class='resultlocation' key={i} onClick={() => navigate(`/profile/${item._id}`)}  >
+                        <img class="SearchProfile" src={item.profilePicture ? serverPublic + item.profilePicture : serverPublic + "avatar.png"} alt="" />
+                        <span style={{ marginLeft: '10px', marginTop: 10, color: 'white' }} >
+                            {item.firstname} {item.lastname}
+                        </span>
+                    </div>
+                )
+            })}
+        </div> -->
+    <div class='menuitems' routerLink="">
+        <fa-icon [icon]="home"></fa-icon>
+        <p>Home</p>
+    </div>
+    <div class='menuitems' routerLink="/user/saved">
+        <fa-icon [icon]="bookMark"></fa-icon>
+        <p>Saved Posts</p>
+    </div>
+    <div class='menuitems'>
+        <fa-icon [icon]="bell"></fa-icon>
+        <p>Notification</p>
+        <!-- {notes.length > 0 ? <span class="notification-icon">{notes.length} </span> : ''} -->
+    </div>
+    <div class='menuitems' routerLink="/user/chat">
+        <fa-icon [icon]="comment"></fa-icon>
+        <p>Chat</p>
+    </div>
+    <div class='menuitems' routerLink="/user/profile">
+        <fa-icon [icon]="bell"></fa-icon>
+        <p>Profile</p>
+    </div>
+    <div class='menuitems' routerLink="/user/login" >
+        <fa-icon [icon]="logout"></fa-icon>
+        <p>LogOut</p>
+    </div>
+</div>

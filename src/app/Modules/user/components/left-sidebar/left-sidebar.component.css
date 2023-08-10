@@ -1,0 +1,134 @@
+.leftSidebar {
+    background-color: rgba(122, 170, 209, 0.562);
+    height: auto;
+    width: 80%;
+    border-radius: 10px;
+    background-image: url(../../../../../assets/images/MenuLogo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.heading {
+    text-align: center;
+}
+
+.menuitems {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px;
+    height: 35px;
+}
+
+.menuitems:hover {
+    background-color: rgba(0, 0, 0, 0.418);
+    color: white;
+    border-radius: 50px;
+    padding: 6px;
+}
+
+.menuitems>p {
+    margin-left: 10px;
+}
+
+h2 {
+    background: linear-gradient(98.63deg, #25b6f9 0%, #5f20f3 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* For Safari/WebKit */
+    color: transparent;
+}
+
+.menu>div>h2 {
+    text-align: center;
+    background-size: 100%;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-decoration-color: transparent;
+}
+
+.homeimage {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+/* search Box */
+
+.search {
+    display: flex;
+    padding: 6px;
+    border-radius: 50px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.textbox {
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+.search .textbox {
+    width: 0;
+    text-indent: 16px;
+    transition: 0.4s;
+    border: none;
+}
+
+.search:hover {
+    background-color: #00000073;
+}
+
+.search:hover .textbox {
+    width: 80%;
+    cursor: pointer;
+}
+
+.s-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px;
+    background: linear-gradient(98.63deg, #25b6f9 0%, #5f20f3 100%);
+    border-radius: 50%;
+    padding: 5px;
+    color: white;
+    border: none;
+}
+
+
+
+.SearchProfile {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.searchoutput {
+    min-height: 100px;
+    max-height: 150px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.336);
+}
+
+.searchoutput>div {
+    margin-top: 10px;
+}
+
+
+.resultlocation {
+    /* background-color: white; */
+    display: flex;
+    border-radius: 10px;
+}

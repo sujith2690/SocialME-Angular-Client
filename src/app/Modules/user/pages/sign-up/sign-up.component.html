@@ -1,0 +1,69 @@
+<div class='SignUpPage'>
+    <div class="box1">
+
+        <form class="form1" [formGroup]="signUpSchema" (ngSubmit)="onSubmit()">
+            <h2>SocialME</h2>
+            <div class="inputBox1">
+                <input required='required' type="text" class="infoInput" name="firstName" id="firstname" formControlName="firstName" />
+                <i></i>
+                <ng-container *ngIf="f['firstName'].invalid && (f['firstName'].dirty || f['firstName'].touched) ; else validFirstName">
+                    <span class="form1-error" *ngIf="f['firstName'].errors?.['required']">First name is required.</span>
+                </ng-container>
+                <ng-template #validFirstName>
+                    <span>First Name</span>
+                </ng-template>
+            </div>
+            <div class="inputBox1">
+                <input required='required' type="text" class="infoInput" name="lastName" id="lastName" formControlName="lastName"  />
+                <i></i>
+                <ng-container *ngIf="f['lastName'].invalid && (f['lastName'].dirty || f['lastName'].touched) ; else validLastName">
+                    <span class="form1-error" *ngIf="f['lastName'].errors?.['required']">Last name is required.</span>
+                </ng-container>
+                <ng-template #validLastName>
+                    <span >Last Name</span>
+                </ng-template>
+            </div>
+            <div class="inputBox1">
+                <input required="required" type="text" class="infoInput" formControlName="email" id="email" formControlName="email" />
+                <i></i>
+                <ng-container *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched);else validEmail ">
+                    <span class="form1-error" *ngIf="f['email'].errors?.['required']">Email is required.</span>
+                </ng-container>
+                <ng-template #validEmail>
+                    <span class="form1-error" *ngIf="f['email'].errors?.['email']">Invalid email format.</span>
+                    <span>Email</span>
+                </ng-template>
+            </div>
+            <div class="inputBox1">
+                <input type="password" required="required" class="infoInput" formControlName="password" id="password" />
+                <i></i>
+                <ng-container *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched); else validPassword ">
+                    <span class="form1-error">{{ f['password'].errors?.['minlength'] ? 'Password must be at least 3 characters' : 'Password is required.' }}</span>
+                </ng-container>
+                <ng-template #validPassword>
+                    <span class="form1-error" *ngIf="f['password'].errors?.['minlength']">Password must be at least 3 characters</span>
+                    <span>Password</span>
+                </ng-template>
+            </div>
+            <div class="inputBox1">
+                <input required='required' type="password" class="infoInput" name="confirmPassword" formControlName="confirmPassword" id="confirmpassword" />
+                <i></i>
+                <ng-container *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched); else validConfirmPassword ">
+                    <span class="form1-error">{{ signUpSchema.errors?.['passwordMismatch'] ? 'Passwords do not match' : 'Confirm Password is required.' }}</span>
+                </ng-container>
+                <ng-template #validConfirmPassword>
+                    <span class="form1-error" *ngIf="signUpSchema.errors?.['passwordMismatch']">Passwords do not match</span>
+                    <span *ngIf="!signUpSchema.errors?.['passwordMismatch']">Confirm Password</span>
+                </ng-template>
+            </div>
+            <button class="signUpBtn" type="submit">
+                Sign Up
+            </button>
+            <div class="parent">
+                <span class="account">
+                    Already have account <b><a class="loginPage" [routerLink]="['/user/login']">Login</a></b> Now...
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

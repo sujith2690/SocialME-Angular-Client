@@ -1,0 +1,39 @@
+.app {
+    background: #f3f3f3;
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.blur {
+    position: absolute;
+    width: 22rem;
+    height: 14rem;
+    border-radius: 50%;
+    background: #a6ddf0;
+    filter: blur(72px);
+}
+
+:root {
+    --blue: #25b6f9;
+    --buttonBg: linear-gradient(98.63deg, #25b6f9 0%, #5f20f3 100%);
+    --hrColor: #cfcdcd;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--buttonBg);
+    transition: all 100ms ease-out;
+}
+
+.button:hover {
+    cursor: pointer;
+    color: var(--blue);
+    background: transparent;
+    border: 2px solid var(--blue);
+}

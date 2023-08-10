@@ -1,0 +1,62 @@
+<!-- <section class="postContainer">
+    <div class="postContent">
+        <div class="profileContent">
+            <div>
+                <img src="" alt="">
+                <p>profile name</p>
+            </div>
+            <div class="options">
+                <p>save</p>
+                <p>option</p>
+            </div>
+        </div>
+        <div>
+            <img src="" alt="">
+            <p>image details</p>
+        </div>
+    </div>
+</section> -->
+
+<div class="Post">
+    <div class='PostOptions'>
+        <div class="PostUser">
+
+            <img class="Profileimg" [src]="profileImage" alt="" />
+            <p><b>Name</b></p>
+
+
+        </div>
+        <div class='opps'>
+
+            <span class='saveoptions'>
+                saved</span>
+            <p>Post optons</p>
+
+        </div>
+    </div>
+    <div class='Discription'>
+        <span>Post Description </span>
+    </div>
+    <img class="postImage" [src]="postImage" alt="" />
+    <div class="PostReact">
+        <div class='PostReact'>
+            <img class='PostIcon' [src]="liked" alt="" />
+            <span class='likeandcomment'> Likes</span>
+            <img class='PostIcon' [src]="comment" />
+            <span class='likeandcomment'> Comments</span>
+        </div>
+    </div>
+
+    <!-- <div>
+        <h1>{{ (counter$ | async)!.counter }}</h1>
+    </div>
+    <div>
+        <button (click)="onIncrement()"> increment</button>
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="value" name="value">
+        <button (click)="customIncrement()">Add custom</button>
+    </div> -->
+
+
+</div>

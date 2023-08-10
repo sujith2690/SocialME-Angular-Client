@@ -1,0 +1,30 @@
+
+.leftSidebar{
+    height: 500px;
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between;  */
+    background-color: rgba(255, 255, 255, 0.64);
+    /* overflow: hidden;
+    overflow-y: scroll;
+    box-sizing: border-box; */
+}
+
+.FollowersCard {
+    box-sizing: border-box;
+    width: 90%;
+    gap: 1rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-size: 13px;
+
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.64);
+    padding: 10px;
+}
