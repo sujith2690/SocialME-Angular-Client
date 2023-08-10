@@ -11,7 +11,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService,private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, 
+    private router: Router, 
+    private authService: AuthService,
+    private toast: ToastrService,
+    
+    ) { }
   loginSchema = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(3)]],
@@ -27,11 +32,11 @@ export class LoginComponent {
           localStorage.setItem('User', JSON.stringify(result.user));
           localStorage.setItem('Token', JSON.stringify(result.token));
           this.router.navigate(['']);
-          this.toastr.success('Login Success')
+          this.toast.success('Login Success')
         }
         else {
           this.loginSchema.reset();
-          this.toastr.error('Invalid Email or Password')
+          this.toast.error('Invalid Email or Password')
         }
       })
       this.loginSchema.reset();
