@@ -20,10 +20,12 @@
     <div class="PostReact">
         <div class='PostReact'>
             <img class="PostIcon" (click)="handleLike(item)" [src]="item.liked ? liked :unLike" alt="Like/Unlike" />
-            <span class="likeandcomment">{{ item.likedNumber }} Likes</span>
-            <img class="PostIcon" [src]="comment" alt="Comment" />
-            <span class="likeandcomment">Comments</span>
+            <span class="likeAndComment">{{ item.likedNumber }} Likes</span>
+            <img class="PostIcon" [src]="comment" alt="Comment" (click)="handleShow(item._id)"/>
+            <span class="likeAndComment" (click)="handleShow(item._id)">{{item.comments.length}} Comments</span>
         </div>
-    </div>
-
+    </div>  
+    <ng-container *ngIf="show === item._id">
+        <app-comment [postId]="item._id" (commentAdded)="handleCommentAdded()" ></app-comment>
+    </ng-container>
 </div>

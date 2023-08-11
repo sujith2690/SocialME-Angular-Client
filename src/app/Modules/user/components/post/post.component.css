@@ -113,7 +113,8 @@
     cursor: pointer;
 }
 
-.likeandcomment {
+.likeAndComment {
+    cursor: pointer;
     color: rgba(36, 45, 73, 0.65);
     font-size: 12px;
     margin-left: -20px;

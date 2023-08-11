@@ -1,0 +1,25 @@
+<div class="formBg">
+    <div class='PostReaction' >
+        <div class="profile" *ngFor="let item of allComments">
+            <div class="commentedUser">
+                <img class="UserProfile"
+                    [src]="item.userData.profilePicture ? serverPublic + item.userData.profilePicture : serverPublic + 'avatar.png'"
+                    alt="" />
+                <div class="userComment" >
+                    <p class="userName"><b>{{item.userData.firstname}} {{item.userData.lastname}}</b></p>
+                    <p class="eachComments">{{item.comments.comment}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <div class='PostReact'>
+            <div class="Message">
+                <img class="UserProfile"
+                    [src]="user.profilePicture ? serverPublic + user.profilePicture : serverPublic + 'avatar.png'" />
+                <input type="text" formControlName="inputComment" placeholder='#Say Something' class='commentInput' />
+            </div>
+            <button type="submit" class='commentBtn'>Send</button>
+        </div>
+    </form>
+</div>

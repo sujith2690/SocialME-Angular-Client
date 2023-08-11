@@ -19,12 +19,13 @@ export class PostComponent implements OnInit {
     private PostService: PostService,
     private Local: UserService,
     private PostRequest: PostService
-  ) {  }
+  ) { }
 
   user: any
   userId: string = ''
   posts: any
   serverPublic = environment.serverPublic;
+  show: string | null = null;
   ngOnInit() {
     this.getUser()
     this.getTimeLine()
@@ -40,8 +41,8 @@ export class PostComponent implements OnInit {
         if (item.likes.includes(this.userId)) {
           const liked = true
           return { ...item, liked, likedNumber: likedNumber };
-        } else { 
-          const liked = false 
+        } else {
+          const liked = false
           return { ...item, liked, likedNumber: likedNumber }
         }
       });
@@ -62,5 +63,16 @@ export class PostComponent implements OnInit {
         }
       }
     });
+  }
+  handleShow(itemId: string) {
+    if (this.show === itemId) {
+      this.show = null
+    } else {
+      this.show = itemId
+    }
+  }
+  handleCommentAdded() {
+    this.getTimeLine()
+    this.getTimeLine()
   }
 }

@@ -1,0 +1,134 @@
+.formBg {
+  background: #dbdbdba8;
+  border-radius: 10px;
+}
+.Post {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.64);
+  margin-top: 1rem;
+}
+
+.Post>img {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: cover;
+}
+
+.PostReact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-right: 20px;
+  padding-bottom:5px ;
+  padding-top: 5px;
+}
+
+.UserProfile {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.Options {
+  width: 2rem;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.PostReact>div>input {
+  background-color: rgba(40, 52, 62, 0.07);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.PostReaction {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left:20px ;
+  align-items: center;
+  margin-top: 10px;
+  min-height: 100px;
+  max-height: 250px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.PostReaction::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
+
+.Message {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0px 20px 0px 20px;
+}
+
+.PostUser {
+  display: flex;
+  align-items: center;
+}
+
+.c-btn {
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.PostIcon {
+  cursor: pointer;
+}
+
+.edit {
+  border: 5px;
+  color: red;
+}
+
+.edit>p {
+  cursor: pointer;
+  margin-top: -20px;
+}
+
+.PostReactedit {
+  border: 1px;
+  align-items: flex-end;
+}
+
+.commentBtn {
+  background: linear-gradient(98.63deg, #25b6f9 0%, #5f20f3 100%);
+  padding: 10px 20px 10px 20px;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.commentedUser {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.userName {
+  color: grey;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+
+.eachComments {
+  margin-left: 10px;
+  font-size: 14px;
+  /* text-align: start; */
+}
