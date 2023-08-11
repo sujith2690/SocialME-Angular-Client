@@ -15,4 +15,8 @@ export class LeftSidebarComponent {
   comment= faComment
   logout=faSignOut
   search = faSearch
+  logOut(){
+    localStorage.setItem('User', '');
+    localStorage.setItem('Token', '');
+  }
 }

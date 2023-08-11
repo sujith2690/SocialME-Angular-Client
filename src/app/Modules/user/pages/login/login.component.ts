@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Core/Services/AuthService/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { loginData } from '../../../../Core/Models/authDetails';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private fb: FormBuilder, 
-    private router: Router, 
+  constructor(private fb: FormBuilder,
+    private router: Router,
     private authService: AuthService,
     private toast: ToastrService,
-    
-    ) { }
+
+  ) { }
   loginSchema = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(3)]],
@@ -25,10 +26,14 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginSchema.valid) {
       const formData = this.loginSchema.value;
+      const data: loginData = {
+        email: JSON.stringify(formData.email).replace(/['"]+/g, ""),
+        password: JSON.stringify(formData.password).replace(/['"]+/g, "")
+      }
       console.log(formData, '---------login data');
-      this.authService.logIn(formData).subscribe((result) => {
-        console.log(result,'--- -----login result')
-        if(result.success){
+      this.authService.logIn(data).subscribe((result) => {
+        console.log(result, '--- -----login result')
+        if (result.success) {
           localStorage.setItem('User', JSON.stringify(result.user));
           localStorage.setItem('Token', JSON.stringify(result.token));
           this.router.navigate(['']);

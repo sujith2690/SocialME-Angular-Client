@@ -73,6 +73,5 @@ export class PostComponent implements OnInit {
   }
   handleCommentAdded() {
     this.getTimeLine()
-    this.getTimeLine()
   }
 }

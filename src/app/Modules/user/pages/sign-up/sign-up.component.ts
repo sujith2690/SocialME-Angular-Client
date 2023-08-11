@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Core/Services/AuthService/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { signupData } from '../../../../Core/Models/authDetails';
 
 // Custom validator function for password match
 function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
-  console.log('------------------sdsdds---------')
   const password = control.get('password')?.value;
   const confirmPassword = control.get('confirmPassword')?.value;
 
@@ -20,7 +22,12 @@ export class SignUpComponent {
 
   signUpSchema: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private toast: ToastrService,
+  ) {
     this.signUpSchema = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -37,9 +44,28 @@ export class SignUpComponent {
   onSubmit() {
     if (this.signUpSchema.valid) {
       const formData = this.signUpSchema.value;
-      sessionStorage.setItem('userData', JSON.stringify(formData));
-      this.signUpSchema.reset();
-      this.router.navigate(['']);
+      console.log(formData, '--------formData')
+      // this.authService.signUp(formData)
+      const data: signupData = {
+        firstname: JSON.stringify(formData.firstName).replace(/['"]+/g, ""),
+        lastname: JSON.stringify(formData.lastName).replace(/['"]+/g, ""),
+        username: JSON.stringify(formData.email).replace(/['"]+/g, ""),
+        password: JSON.stringify(formData.password).replace(/['"]+/g, "")
+      }
+      this.authService.signUp(data).subscribe((result) => {
+        console.log(result, '--- -----login result')
+        if (result.success) {
+          this.toast.success(result.message)
+          localStorage.setItem('User',JSON.stringify(result.user));
+          localStorage.setItem('Token', JSON.stringify(result.token));
+          this.router.navigate(['']);
+          this.signUpSchema.reset();
+        }
+        else {
+          this.toast.error(result.message)
+          this.signUpSchema.reset();
+        }
+      })
     } else {
       this.markAllFieldsAsTouched();
     }

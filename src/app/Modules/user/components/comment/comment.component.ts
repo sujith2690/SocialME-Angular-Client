@@ -66,12 +66,14 @@ export class CommentComponent implements OnInit {
         desc: commentText
       };
       try {
-        this.Comment.uploadComment(data).subscribe();
-        this.getComments();
-        this.Comment.fetchComments(this.postId).subscribe((result) => {
-          this.allComments = result
-        })
-         this.commentAdded.emit();
+        this.Comment.uploadComment(data).subscribe(()=>{
+          this.getComments();
+          this.commentAdded.emit();
+        });
+        // this.Comment.fetchComments(this.postId).subscribe((result) => {
+        //   this.allComments = result
+        // })
+         
         this.commentForm.reset();
       } catch (error) {
         console.error('Error adding comment:', error);

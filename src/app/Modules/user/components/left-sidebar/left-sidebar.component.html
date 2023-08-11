@@ -41,7 +41,7 @@
         <fa-icon [icon]="bell"></fa-icon>
         <p>Profile</p>
     </div>
-    <div class='menuitems' routerLink="/user/login" >
+    <div class='menuitems' routerLink="/user/login" (click)="logOut()" >
         <fa-icon [icon]="logout"></fa-icon>
         <p>LogOut</p>
     </div>
