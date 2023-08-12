@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { PostService } from 'src/app/Core/Services/PostRequest/post.service';
 import { UserService } from 'src/app/Core/Services/local/user.service';
 import { environment } from 'src/environment/environment';
@@ -47,12 +48,17 @@ export class CommentComponent implements OnInit {
       inputComment: ['']
     });
   }
+  private ngUnsubscribe = new Subject<void>();
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
   getUser() {
     this.user = this.Local.loadFromLocalStorage()
     this.userId = this.user._id
   }
   getComments() {
-    this.Comment.fetchComments(this.postId).subscribe((result) => {
+    this.Comment.fetchComments(this.postId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((result) => {
       this.allComments = result
       console.log(this.allComments, '---------comment-----------')
     })
@@ -66,14 +72,10 @@ export class CommentComponent implements OnInit {
         desc: commentText
       };
       try {
-        this.Comment.uploadComment(data).subscribe(()=>{
+        this.Comment.uploadComment(data).pipe(takeUntil(this.ngUnsubscribe)).subscribe(()=>{
           this.getComments();
           this.commentAdded.emit();
         });
-        // this.Comment.fetchComments(this.postId).subscribe((result) => {
-        //   this.allComments = result
-        // })
-         
         this.commentForm.reset();
       } catch (error) {
         console.error('Error adding comment:', error);

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Core/Services/AuthService/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { loginData } from '../../../../Core/Models/authDetails';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,11 @@ export class LoginComponent {
     password: ['', [Validators.required, Validators.minLength(3)]],
   });
   get f() { return this.loginSchema.controls }
+  private ngUnsubscribe = new Subject<void>();
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
   onSubmit() {
     if (this.loginSchema.valid) {
       const formData = this.loginSchema.value;
@@ -31,7 +37,7 @@ export class LoginComponent {
         password: JSON.stringify(formData.password).replace(/['"]+/g, "")
       }
       console.log(formData, '---------login data');
-      this.authService.logIn(data).subscribe((result) => {
+      this.authService.logIn(data).pipe(takeUntil(this.ngUnsubscribe)).subscribe((result) => {
         console.log(result, '--- -----login result')
         if (result.success) {
           localStorage.setItem('User', JSON.stringify(result.user));

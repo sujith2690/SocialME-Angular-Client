@@ -1,15 +1,14 @@
-<div class='PostShare'>
+<!-- <div class='PostShare'>
     <div class="postInput">
-        <!-- <img class="share" [src]="profileImage" alt=""> -->
         <img class="share"
-            [src]="user.profilePicture ? serverPublic + user.profilePicture : serverPublic + 'avatar.png'" 
-            alt="" />
+            [src]="user.profilePicture ? serverPublic + user.profilePicture : serverPublic + 'avatar.png'" alt="" />
 
         <input type="text" placeholder="What's Happening" />
     </div>
     <div class='allItems'>
         <div class="postOptions">
-            <div class='option'>
+            
+            <div class='option' >
                 <fa-icon class="optionA" [icon]="image"></fa-icon>
                 Photo
             </div>
@@ -26,5 +25,41 @@
             </button>
 
         </div>
+    </div>
+</div> -->
+
+
+
+<div class="PostShare">
+    <div class="postInput">
+        <img class="share"
+            [src]="user.profilePicture ? serverPublic + user.profilePicture : serverPublic + 'avatar.png'" alt="" />
+        <input #desc type="text" placeholder="What's Happening" />
+    </div>
+    <div class="allItems">
+        <div class="postOptions">
+            <div class='option' (click)="imageInput.click()">
+                <fa-icon class="optionA" [icon]="image"></fa-icon>
+                Photo
+            </div>
+            <div class='option'>
+                <fa-icon class="optionB" [icon]="video"></fa-icon>
+                Video
+            </div>
+            <div class='option'>
+                <fa-icon class="optionC" [icon]="location"></fa-icon>
+                Location
+            </div>
+        </div>
+        <button class='custom-button' (click)="handleSubmit()">share
+        </button>
+        <div style="display: none;">
+            <input #imageInput type="file" name="myImage" (change)="onImageChange($event)"
+                accept="image/png, image/gif, image/jpeg" />
+        </div>
+    </div>
+    <div class="previewImage" *ngIf="imageFile">
+        <fa-icon (click)="clearImage()" [icon]="close" style="color: red; cursor: pointer;"></fa-icon>
+        <img [src]="imageUrl" alt="" />
     </div>
 </div>

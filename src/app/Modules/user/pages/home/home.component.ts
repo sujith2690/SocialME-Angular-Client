@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  newPost: boolean = false
 
+  checkNewPost() {
+    this.newPost = !this.newPost
+    console.log('checking new post',this.newPost)
+  }
 }

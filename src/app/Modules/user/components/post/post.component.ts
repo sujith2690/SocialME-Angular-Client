@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { PostService } from 'src/app/Core/Services/PostRequest/post.service';
 import { UserService } from 'src/app/Core/Services/local/user.service';
 import { environment } from 'src/environment/environment';
@@ -21,6 +22,8 @@ export class PostComponent implements OnInit {
     private PostRequest: PostService
   ) { }
 
+  @Input() newPost: boolean = false
+
   user: any
   userId: string = ''
   posts: any
@@ -30,27 +33,44 @@ export class PostComponent implements OnInit {
     this.getUser()
     this.getTimeLine()
   }
+
+  // UN Subscribe.......
+  private ngUnsubscribe = new Subject<void>();
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['newPost']) {
+      console.log('its herer-------')
+      this.getTimeLine();
+    }
+  }
+  //.............
   getUser() {
     this.user = this.Local.loadFromLocalStorage()
     this.userId = this.user._id
   }
   getTimeLine() {
-    this.PostRequest.getTimelinePosts(this.userId).subscribe((result) => {
-      this.posts = result.map((item: any) => {
-        const likedNumber = item.likes.length;
-        if (item.likes.includes(this.userId)) {
-          const liked = true
-          return { ...item, liked, likedNumber: likedNumber };
-        } else {
-          const liked = false
-          return { ...item, liked, likedNumber: likedNumber }
-        }
+    if(this.userId){
+      this.PostRequest.getTimelinePosts(this.userId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((result) => {
+        this.posts = result.map((item: any) => {
+          const likedNumber = item.likes.length;
+          if (item.likes.includes(this.userId)) {
+            const liked = true
+            return { ...item, liked, likedNumber: likedNumber };
+          } else {
+            const liked = false
+            return { ...item, liked, likedNumber: likedNumber }
+          }
+        });
+        console.log(this.posts, '---posts')
       });
-      console.log(this.posts, '---posts')
-    });
+    }
   }
   handleLike(item: any) {
-    this.PostRequest.likePost(item._id, this.userId).subscribe((result) => {
+    this.PostRequest.likePost(item._id, this.userId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((result) => {
       console.log(result, '-----------like');
       const itemIndex = this.posts.findIndex((post: any) => post._id === item._id);
       if (itemIndex !== -1) {

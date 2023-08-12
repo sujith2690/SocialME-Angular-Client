@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Core/Services/AuthService/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { signupData } from '../../../../Core/Models/authDetails';
+import { Subject, takeUntil } from 'rxjs';
 
 // Custom validator function for password match
 function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
@@ -40,7 +41,11 @@ export class SignUpComponent {
   get f() {
     return this.signUpSchema.controls;
   }
-
+  private ngUnsubscribe = new Subject<void>();
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
   onSubmit() {
     if (this.signUpSchema.valid) {
       const formData = this.signUpSchema.value;
@@ -52,7 +57,7 @@ export class SignUpComponent {
         username: JSON.stringify(formData.email).replace(/['"]+/g, ""),
         password: JSON.stringify(formData.password).replace(/['"]+/g, "")
       }
-      this.authService.signUp(data).subscribe((result) => {
+      this.authService.signUp(data).pipe(takeUntil(this.ngUnsubscribe)).subscribe((result) => {
         console.log(result, '--- -----login result')
         if (result.success) {
           this.toast.success(result.message)

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
+import { post, postDetails } from '../../Models/postDetails';
 
 interface commentData {
   postId: string,
@@ -25,6 +26,13 @@ export class PostService {
     return this.http.get(`${this.baseUrl}post/${postId}/comments`)
   }
   uploadComment(data: commentData): Observable<any> {
-    return this.http.post(`${this.baseUrl}post/comment`,{data})
+    return this.http.post(`${this.baseUrl}post/comment`, { data })
+  }
+
+  uploadImage(data:postDetails ): Observable<any> {
+    return this.http.post(`${this.baseUrl}upload`, { data })
+  }
+  uploadPost(data: post): Observable<any> {
+    return this.http.post(`${this.baseUrl}post`, { data })
   }
 }
