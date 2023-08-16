@@ -1,6 +1,6 @@
 export interface postDetails {
-    name: string,
-    file: File,
+    'name': string,
+    'file': File,
 }
 export interface post {
     userId: string,

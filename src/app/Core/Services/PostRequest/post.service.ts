@@ -29,8 +29,8 @@ export class PostService {
     return this.http.post(`${this.baseUrl}post/comment`, { data })
   }
 
-  uploadImage(data:postDetails ): Observable<any> {
-    return this.http.post(`${this.baseUrl}upload`, { data })
+  uploadImage(data: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}upload`,  data )
   }
   uploadPost(data: post): Observable<any> {
     return this.http.post(`${this.baseUrl}post`, { data })

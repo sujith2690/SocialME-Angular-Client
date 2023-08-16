@@ -1,6 +1,6 @@
 
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { faImage, faVideo, faLocation,faClose } from '@fortawesome/free-solid-svg-icons'
+import { faImage, faVideo, faLocation, faClose } from '@fortawesome/free-solid-svg-icons'
 import { environment } from 'src/environment/environment';
 import { ToastrService } from 'ngx-toastr';
 import { PostService } from 'src/app/Core/Services/PostRequest/post.service';
@@ -22,11 +22,10 @@ export class PostShareComponent implements OnInit {
   image = faImage
   video = faVideo
   location = faLocation
-  close= faClose
+  close = faClose
 
   user: any; // Replace 'any' with your user type
   serverPublic: string = environment.serverPublic; // Set the server public URL
-  // loading: boolean;
   imageFile: File | null = null;
   imageUrl: string | null = null;
 
@@ -41,6 +40,7 @@ export class PostShareComponent implements OnInit {
     const storedContent = localStorage.getItem('User');
     if (storedContent) {
       this.user = JSON.parse(storedContent);
+      console.log(this.user,'---usereeeeeeeee')
     } else {
       this.user = []
     }
@@ -60,7 +60,7 @@ export class PostShareComponent implements OnInit {
       this.imageUrl = URL.createObjectURL(this.imageFile);
     } else {
       if (file.size >= maxSizeInBytes) {
-        this.toast.warning('Login Success')
+        this.toast.warning('Big files')
         this.reset();
       } else {
         this.toast.success('Upload Success')
@@ -85,13 +85,12 @@ export class PostShareComponent implements OnInit {
       if (this.imageFile) {
         const filename = Date.now() + this.imageFile.name;
         this.imageUrl = URL.createObjectURL(this.imageFile);
-        console.log(this.imageUrl,'-----------image')
-        const data: postDetails = {
-          name: filename,
-          file: this.imageFile
-        }
+        console.log(this.imageUrl, '-----------image')
+        const data = new FormData();
+        data.append('name', filename);
+        data.append('file', this.imageFile);
         newPost.image = filename;
-
+        console.log(data, '----------data')
         try {
           this.PostService.uploadImage(data).subscribe(() => {
             console.log(data, '--------image data')
