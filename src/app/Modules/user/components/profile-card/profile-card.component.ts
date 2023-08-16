@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-profile-card',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-card.component.css']
 })
 export class ProfileCardComponent {
-
+  coverImage = '../../../assets/images/coverImage.jpg'
+  profileImage = '../../../assets/images/avatar.png'
+  Edit = faPen
 }

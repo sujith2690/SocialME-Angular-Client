@@ -1,0 +1,139 @@
+.ProfileCard {
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: clip;
+    background-color: var(--cardColor);
+}
+
+.ProfileImages {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.coverImages {
+    width: 100%;
+    object-fit: cover;
+    height: 150px;
+}
+
+.profilesImages {
+    width: 8rem;
+    height: 9rem;
+    border-radius: 25%;
+    position: absolute;
+    align-items: flex-start;
+    margin-left: 10px;
+    bottom: -3rem;
+    object-fit: cover;
+    box-shadow: var(--profileShadow);
+}
+
+.ProfileName {
+    margin-left: 9rem;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.editIcons {
+    position: absolute;
+
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 120px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+
+.pen {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    margin-left: 7rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profileDetails {
+
+    margin-top: -2rem;
+    text-align: end;
+    padding: 10px;
+}
+
+.followStatus {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(128, 128, 128, 0.24);
+    padding: 10px;
+}
+
+.follow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.follow>span:nth-of-type(1) {
+    font-weight: bold;
+}
+
+.follow>span:nth-of-type(2) {
+    color: var(--gray);
+    font-size: 13px;
+}
+
+.vl {
+    height: 150%;
+    border-left: 2px solid var(--hrColor);
+}
+
+.ProfileCard>span {
+    font-weight: bold;
+    color: rgb(0, 174, 255);
+    align-self: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.custom-button {
+    padding: 10px 20px;
+    background: linear-gradient(98.63deg, #25b6f9 0%, #5f20f3 100%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid rgba(63, 145, 253, 0.904);
+}
+.custom-button:hover {
+    background: #fff;
+    color: blue;
+    border: 2px solid rgba(63, 145, 253, 0.904);
+}
+.customBut {
+    display: flex;
+    flex-direction: row-reverse;
+    background: linear-gradient(98.63deg, #25b6f9 0%, #5f20f3 100%);
+    /* margin-right: 10px; */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -8,13 +8,14 @@ import { ProfileCardComponent } from './components/profile-card/profile-card.com
 import { ChatComponent } from './pages/chat/chat.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { userGuard } from 'src/app/Core/Guard/user/user.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent,  canActivate: [userGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignUpComponent },
     { path: 'saved', component: SavedPostsComponent,canActivate: [userGuard] },
-    { path: 'profile', component: ProfileCardComponent,canActivate: [userGuard] },
+    { path: 'profile', component: ProfileComponent,canActivate: [userGuard] },
     { path: 'chat', component: ChatComponent,canActivate: [userGuard] },
     { path: 'error', component: ErrorComponent },
     { path: '**', redirectTo: "/error" },

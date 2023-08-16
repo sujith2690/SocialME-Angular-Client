@@ -1,1 +1,49 @@
-<p>profile-card works!</p>
+<div class="ProfileCard">
+    <div class="ProfileImages">
+        <img class='coverImages' [src]="coverImage" alt="" />
+        <div class="userProfile">
+            <div>
+                <img class="profilesImages" [src]="profileImage" alt="" />
+            </div>
+            <div class="editIcons">
+                <fa-icon [icon]="Edit"></fa-icon>
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <button class='custom-button'>
+        Message
+    </button>
+    <div class="ProfileName">
+        <span>name first last verified</span>
+    </div>
+
+    <div>
+        <div class="profileDetails">
+            <p>single<b>: Status</b></p>
+            <p> Bangalore<b>: worksAt</b></p>
+            <p> India<b>: livesIn</b></p>
+            <button class="custom-button">
+                Follow or unFollow
+            </button>
+        </div>
+    </div>
+    <div class="followStatus">
+        <div class="follow">
+            <span>5</span>
+            <span>Following</span>
+        </div>
+        <div class="vl"></div>
+        <div class="follow">
+            <span>10</span>
+            <span>Followers</span>
+        </div>
+
+        <div class="vl">
+        </div>
+        <div class="follow">
+            <span>55</span>
+            <span>Posts</span>
+        </div>
+    </div>
+</div>
