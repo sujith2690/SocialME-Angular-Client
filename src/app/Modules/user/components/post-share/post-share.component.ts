@@ -40,7 +40,6 @@ export class PostShareComponent implements OnInit {
     const storedContent = localStorage.getItem('User');
     if (storedContent) {
       this.user = JSON.parse(storedContent);
-      console.log(this.user,'---usereeeeeeeee')
     } else {
       this.user = []
     }

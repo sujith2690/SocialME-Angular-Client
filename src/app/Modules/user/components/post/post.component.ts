@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { PostService } from 'src/app/Core/Services/PostRequest/post.service';
+import { UserDataService } from 'src/app/Core/Services/User/user-data.service';
 import { UserService } from 'src/app/Core/Services/local/user.service';
 import { environment } from 'src/environment/environment';
 
@@ -19,7 +21,9 @@ export class PostComponent implements OnInit {
   constructor(
     private PostService: PostService,
     private Local: UserService,
-    private PostRequest: PostService
+    private PostRequest: PostService,
+    private router: ActivatedRoute,
+    private userData: UserDataService,
   ) { }
 
   @Input() newPost: boolean = false
@@ -31,7 +35,9 @@ export class PostComponent implements OnInit {
   show: string | null = null;
   ngOnInit() {
     this.getUser()
-    this.getTimeLine()
+    let getParamId = this.router.snapshot.paramMap.get('id') || ''; // Provide a default value here
+    if(getParamId)  this.userId = getParamId
+    this.getTimeLine(getParamId)
   }
 
   // UN Subscribe.......
@@ -43,8 +49,7 @@ export class PostComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['newPost']) {
-      console.log('its herer-------')
-      this.getTimeLine();
+      this.getTimeLine(this.userId);
     }
   }
   //.............
@@ -52,10 +57,12 @@ export class PostComponent implements OnInit {
     this.user = this.Local.loadFromLocalStorage()
     this.userId = this.user._id
   }
-  getTimeLine() {
-    if(this.userId){
-      this.PostRequest.getTimelinePosts(this.userId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((result) => {
-        this.posts = result.map((item: any) => {
+  getTimeLine(userId:string) {
+    if(userId){
+      this.userData.getUserData(userId).subscribe((result) => {
+        this.user = result
+        console.log(this.user, '---------------user result')
+        this.posts = result.allPosts.map((item: any) => {
           const likedNumber = item.likes.length;
           if (item.likes.includes(this.userId)) {
             const liked = true
@@ -66,7 +73,23 @@ export class PostComponent implements OnInit {
           }
         });
         console.log(this.posts, '---posts')
-      });
+      })
+    }else{
+      if(this.userId){
+        this.PostRequest.getTimelinePosts(this.userId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((result) => {
+          this.posts = result.map((item: any) => {
+            const likedNumber = item.likes.length;
+            if (item.likes.includes(this.userId)) {
+              const liked = true
+              return { ...item, liked, likedNumber: likedNumber };
+            } else {
+              const liked = false
+              return { ...item, liked, likedNumber: likedNumber }
+            }
+          });
+          console.log(this.posts, '---posts')
+        });
+      }
     }
   }
   handleLike(item: any) {
@@ -92,6 +115,6 @@ export class PostComponent implements OnInit {
     }
   }
   handleCommentAdded() {
-    this.getTimeLine()
+    this.getTimeLine(this.userId)
   }
 }

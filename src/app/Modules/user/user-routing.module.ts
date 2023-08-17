@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignUpComponent },
     { path: 'saved', component: SavedPostsComponent,canActivate: [userGuard] },
-    { path: 'profile', component: ProfileComponent,canActivate: [userGuard] },
+    { path: 'profile/:id', component: ProfileComponent,canActivate: [userGuard] },
     { path: 'chat', component: ChatComponent,canActivate: [userGuard] },
     { path: 'error', component: ErrorComponent },
     { path: '**', redirectTo: "/error" },

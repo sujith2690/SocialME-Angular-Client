@@ -69,9 +69,10 @@
 
 .profileDetails {
 
-    margin-top: -2rem;
+    /* margin-top: -2rem; */
     text-align: end;
     padding: 10px;
+    line-height: 22px;
 }
 
 .followStatus {
@@ -80,6 +81,7 @@
     justify-content: space-around;
     background-color: rgba(128, 128, 128, 0.24);
     padding: 10px;
+
 }
 
 .follow {

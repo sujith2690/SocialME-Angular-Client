@@ -2,9 +2,9 @@
     <div class='PostOptions'>
         <div class="PostUser">
             <img class="Profileimg"
-                [src]="item.profilePicture ? serverPublic + item.profilePicture : serverPublic + 'avatar.png'" />
+                [src]="item.profilePicture ? serverPublic + item.profilePicture :user.profilePicture ? serverPublic + user.profilePicture :serverPublic + 'avatar.png' " />
 
-            <p><b>{{item.firstname}} {{item.lastname}}</b></p>
+            <p><b>{{item.firstname?item.firstname:user.firstname}} {{item.lastname?item.lastname:user.lastname}}</b></p>
         </div>
         <div class='opps'>
             <span class='saveoptions'>

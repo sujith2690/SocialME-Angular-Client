@@ -1,9 +1,11 @@
 <div class="ProfileCard">
     <div class="ProfileImages">
-        <img class='coverImages' [src]="coverImage" alt="" />
+        <img class='coverImages' [src]="user.coverPicture ? serverPublic + user.coverPicture :coverImage " />
         <div class="userProfile">
             <div>
-                <img class="profilesImages" [src]="profileImage" alt="" />
+                <img class="profilesImages"
+                    [src]="user.profilePicture?serverPublic + user.profilePicture :serverPublic + 'avatar.png'"
+                    alt="" />
             </div>
             <div class="editIcons">
                 <fa-icon [icon]="Edit"></fa-icon>
@@ -11,38 +13,43 @@
         </div>
         <!--  -->
     </div>
-    <button class='custom-button'>
-        Message
-    </button>
+    <div *ngIf="loggedUser !== customUser">
+        <button class='custom-button'>
+            Message
+        </button>
+    </div>
     <div class="ProfileName">
-        <span>name first last verified</span>
+        <span>{{user.firstname}} {{user.lastname}}</span>
     </div>
 
     <div>
-        <div class="profileDetails">
-            <p>single<b>: Status</b></p>
-            <p> Bangalore<b>: worksAt</b></p>
-            <p> India<b>: livesIn</b></p>
-            <button class="custom-button">
+        <div class="profileDetails" *ngIf="user.livesIn">
+            <p>Status : <b>{{user.relationship}}</b></p>
+            <p> Works At : <b>{{user.worksAt}}</b></p>
+            <p>livesIn : <b>{{user.livesIn}}</b></p>
+
+        </div>
+        <div *ngIf="loggedUser !== customUser">
+            <button class="custom-button" (click)="handleFollow(customUser)" >
                 Follow or unFollow
             </button>
         </div>
     </div>
     <div class="followStatus">
         <div class="follow">
-            <span>5</span>
+            <span>{{user.following.length}}</span>
             <span>Following</span>
         </div>
         <div class="vl"></div>
         <div class="follow">
-            <span>10</span>
+            <span>{{user.followers.length}}</span>
             <span>Followers</span>
         </div>
 
         <div class="vl">
         </div>
         <div class="follow">
-            <span>55</span>
+            <span>{{user.allPosts.length}}</span>
             <span>Posts</span>
         </div>
     </div>
