@@ -18,6 +18,8 @@ export class ProfileCardComponent {
   Edit = faPen
   customUser: string = ''
   loggedUser: string = ''
+  local:string=''
+  modal: boolean = false
   user: searchUser = {
     allPosts: [],
     firstname: '',
@@ -45,20 +47,31 @@ export class ProfileCardComponent {
     this.customUser = getParamId
     this.getUser(getParamId);
   }
-
+  // getLocalUser() {
+  //   this.local = this.Local.loadFromLocalStorage()
+  // }
   getUser(userId?: string) {
     if (userId) {
       this.userData.getUserData(userId).subscribe((result) => {
         this.user = result
-
       })
     }
     this.user = this.Local.loadFromLocalStorage()
     this.loggedUser = this.user._id
   }
-  handleFollow(userId:string){
+  handleEdit() {
+    if (this.modal === true) {
+      console.log(this.modal, '-----1')
+      this.modal = false
+    }
+    else {
+      this.modal = true
+      console.log(this.modal, '-----2')
+    }
+  }
+  handleFollow(userId: string) {
     console.log(userId)
   }
 }
-  
+
 

@@ -1,4 +1,5 @@
 <div class="ProfileCard">
+
     <div class="ProfileImages">
         <img class='coverImages' [src]="user.coverPicture ? serverPublic + user.coverPicture :coverImage " />
         <div class="userProfile">
@@ -7,7 +8,7 @@
                     [src]="user.profilePicture?serverPublic + user.profilePicture :serverPublic + 'avatar.png'"
                     alt="" />
             </div>
-            <div class="editIcons">
+            <div class="editIcons" *ngIf="loggedUser === customUser" (click)="handleEdit()">
                 <fa-icon [icon]="Edit"></fa-icon>
             </div>
         </div>
@@ -30,7 +31,7 @@
 
         </div>
         <div *ngIf="loggedUser !== customUser">
-            <button class="custom-button" (click)="handleFollow(customUser)" >
+            <button class="custom-button" (click)="handleFollow(customUser)">
                 Follow or unFollow
             </button>
         </div>
@@ -53,4 +54,7 @@
             <span>Posts</span>
         </div>
     </div>
+</div>
+<div *ngIf="modal">
+    <app-profile-modal [handleEdit]="handleEdit"></app-profile-modal>
 </div>

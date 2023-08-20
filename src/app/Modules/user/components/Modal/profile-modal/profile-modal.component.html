@@ -1,0 +1,50 @@
+<div class="overlay" (click)="handleClick()">
+    <div class="modal">
+        <form [formGroup]="profileUpdate" (ngSubmit)="onSubmit()">
+            <div class="inputBox">
+                <label for="firstname">First Name</label>
+                <input type="text" id="firstname" formControlName="firstname">
+            </div>
+            <ng-container *ngIf="f.firstname.errors?.['required']">
+                <p>First Name is required.</p>
+            </ng-container>
+            <div class="inputBox">
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" formControlName="lastname">
+            </div>
+            <ng-container *ngIf="f.lastname.errors?.['required']">
+                <p>Last Name is required.</p>
+            </ng-container>
+
+            <div class="inputBox">
+                <label for="relationship">Status</label>
+                <input type="text" id="relationship" formControlName="relationship">
+            </div>
+
+            <div class="inputBox">
+                <label for="livesIn">Lives In</label>
+                <input type="text" id="livesIn" formControlName="livesIn">
+            </div>
+
+            <div class="inputBox">
+                <label for="worksAt">Works At</label>
+                <input type="text" id="worksAt" formControlName="worksAt">
+            </div>
+
+            <div class="inputBox">
+                <label for="coverImage">Cover Image</label>
+                <input type="file" id="coverImage" formControlName="coverImage">
+            </div>
+
+            <div class="inputBox">
+                <label for="profileImage">Profile Image:</label>
+                <input type="file" id="profileImage" formControlName="profileImage">
+            </div>
+
+            <div class="cover">
+                <button type="submit">Update Profile</button>
+            </div>
+        </form>
+
+    </div>
+</div>

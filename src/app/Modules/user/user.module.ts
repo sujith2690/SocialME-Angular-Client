@@ -22,6 +22,7 @@ import { AuthService } from 'src/app/Core/Services/AuthService/auth.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './components/comment/comment.component';
+import { ProfileModalComponent } from './components/Modal/profile-modal/profile-modal.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CommentComponent } from './components/comment/comment.component';
     SignUpComponent,
     UserComponent,
     CommentComponent,
+    ProfileModalComponent,
   ],
   imports: [
     FontAwesomeModule,

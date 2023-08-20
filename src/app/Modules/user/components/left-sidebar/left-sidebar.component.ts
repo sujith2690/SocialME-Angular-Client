@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faCoffee, faBookBookmark, faBell, faComment, faHome, faSignOut, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faBookBookmark, faBell, faComment, faHome, faSignOut, faSearch,faUser } from '@fortawesome/free-solid-svg-icons'
 import { userDetails } from 'src/app/Core/Models/userDetails';
 import { Router } from '@angular/router';
 
@@ -17,6 +17,7 @@ export class LeftSidebarComponent {
   comment = faComment
   logout = faSignOut
   search = faSearch
+  faUser = faUser
   user: userDetails = {
     Notifications: [],
     firstname: '',
