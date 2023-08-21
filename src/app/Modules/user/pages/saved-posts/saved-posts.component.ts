@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./saved-posts.component.css']
 })
 export class SavedPostsComponent {
+  newPost: boolean = false
 
+  checkNewPost() {
+    this.newPost = !this.newPost
+    console.log('checking new post', this.newPost)
+  }
 }

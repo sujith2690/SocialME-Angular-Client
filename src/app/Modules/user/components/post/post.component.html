@@ -1,15 +1,24 @@
 <div class="Post" *ngFor="let item of posts">
     <div class='PostOptions'>
-        <div class="PostUser">
+        <div class="PostUser" *ngIf="!location">
             <img class="Profileimg"
-                [src]="item.profilePicture ? serverPublic + item.profilePicture :user.profilePicture ? serverPublic + user.profilePicture :serverPublic + 'avatar.png' " />
+                [src]="item.userDetails.profilePicture? serverPublic + item.userDetails.profilePicture :serverPublic + 'avatar.png' " />
 
-            <p><b>{{item.firstname?item.firstname:user.firstname}} {{item.lastname?item.lastname:user.lastname}}</b></p>
+            <p><b>{{item.userDetails?item.userDetails.firstname:''}}
+                    {{item.userDetails?item.userDetails.lastname:''}}</b></p>
         </div>
-        <div class='opps'>
-            <span class='saveoptions'>
+        <div class="PostUser" *ngIf="location">
+            <img class="Profileimg"
+                [src]="item.profilePicture? serverPublic + item.profilePicture :serverPublic + 'avatar.png' " />
+
+            <p><b>{{item.firstname?item.firstname:''}} {{item.lastname?item.lastname:''}}</b></p>
+        </div>
+        <div class='opps' *ngIf="item.savedusers.includes(userId)">
+            <span (click)="handleSave(item._id)" class='saveoptions'>
                 saved</span>
-            <p>Post optons</p>
+        </div>
+        <div class='opps' *ngIf="!item.savedusers.includes(userId)">
+            <fa-icon (click)="handleSave(item._id)" [icon]="bookMark"></fa-icon>
         </div>
     </div>
     <div class='Discription'>
@@ -21,11 +30,11 @@
         <div class='PostReact'>
             <img class="PostIcon" (click)="handleLike(item)" [src]="item.liked ? liked :unLike" alt="Like/Unlike" />
             <span class="likeAndComment">{{ item.likedNumber }} Likes</span>
-            <img class="PostIcon" [src]="comment" alt="Comment" (click)="handleShow(item._id)"/>
+            <img class="PostIcon" [src]="comment" alt="Comment" (click)="handleShow(item._id)" />
             <span class="likeAndComment" (click)="handleShow(item._id)">{{item.comments.length}} Comments</span>
         </div>
-    </div>  
+    </div>
     <ng-container *ngIf="show === item._id">
-        <app-comment [postId]="item._id" (commentAdded)="handleCommentAdded()" ></app-comment>
+        <app-comment [postId]="item._id" (commentAdded)="handleCommentAdded()"></app-comment>
     </ng-container>
 </div>

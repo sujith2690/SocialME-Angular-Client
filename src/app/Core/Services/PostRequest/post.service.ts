@@ -30,9 +30,18 @@ export class PostService {
   }
 
   uploadImage(data: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}upload`,  data )
+    return this.http.post(`${this.baseUrl}upload`, data)
   }
   uploadPost(data: post): Observable<any> {
     return this.http.post(`${this.baseUrl}post`, { data })
+  }
+  // export const getSavedPost=(userId) => API.get(`/post/${userId}/saved`)
+  getSavedPost(userId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}post/${userId}/saved`)
+  }
+  // export const savepost = (id,userId)=> API.put(`/post/${id}/save`,{userId:userId})
+  savePost(postId: string, userId: string): Observable<any> {
+    const params = { userId }; // Create a parameter object with the userId
+    return this.http.put(`${this.baseUrl}post/${postId}/save`, { params });
   }
 }
